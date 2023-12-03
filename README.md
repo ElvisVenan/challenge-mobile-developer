@@ -14,7 +14,7 @@ Será solicitado o desenvolvimento de um aplicativo que realize a autenticação
 - **UX/UI:** Utilizar preceitos e regras de material 3
 
 - **Persistência de informações:** Utilizar Shared Preferences, SQFLite e/ou Banco NoSQL, caso necessário
-- **Idioma de escrita do código:** Inglêss
+- **Idioma de escrita do código:** Inglês
 
 # Requisitos
 ## Contextualização
