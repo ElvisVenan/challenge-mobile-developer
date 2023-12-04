@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../utils/const/app_dimens.dart';
-import '../../utils/const/app_drawables.dart';
-import '../../utils/const/app_colors.dart';
+import '../../const/app_colors.dart';
+import '../../const/app_dimens.dart';
+import '../../const/app_drawables.dart';
 
 import '../login_page/login_page.dart';
 
