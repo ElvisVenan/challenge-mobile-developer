@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:challenge_mobile_developer/pages/home_page/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../controller/authentication_controller.dart';
 import '../pages/login_page/login_page.dart';
-import '../services/local_service/i_local_service.dart';
-import '../services/local_service/local_service_impl.dart';
+import '../services/local_database/i_local_service.dart';
+import '../services/local_database/local_service_impl.dart';
+import '../pages/home_page/home_page.dart';
 
 part 'splash_controller.g.dart';
 

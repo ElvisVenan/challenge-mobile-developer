@@ -1,16 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-import '../../const/app_strings.dart';
-import '../../utils/http/errors/application_error.dart';
-import '../../utils/http/errors/authentication_error.dart';
-import '../../utils/http/mixins/uri_builder.dart';
+import '../../../const/app_strings.dart';
 
-import '../../models/authentication_model/authentication_model.dart';
-import '../../models/params/authentication_params/authentication_params.dart';
-import '../endpoints/app_endpoints.dart';
+import '../../../utils/http/errors/application_error.dart';
+import '../../../utils/http/errors/authentication_error.dart';
+import '../../../utils/http/errors/generic_error.dart';
+import '../../../utils/http/mixins/uri_builder.dart';
+
+import '../../../models/authentication_model/authentication_model.dart';
+import '../../../models/params/authentication_params/authentication_params.dart';
+import '../../endpoints/app_endpoints.dart';
+
 import 'authentication_service.dart';
-import '../../utils/http/errors/generic_error.dart';
 
 class AuthenticationServiceImpl
     with UriBuilder
