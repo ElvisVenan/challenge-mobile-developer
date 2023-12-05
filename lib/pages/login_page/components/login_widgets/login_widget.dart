@@ -1,3 +1,4 @@
+import 'package:challenge_mobile_developer/const/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../const/app_colors.dart';
@@ -50,7 +51,8 @@ class LoginWidget extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                       RectangularTextFieldWidget(
+                      RectangularTextFieldWidget(
+                        prefixIcon: const Icon(Icons.person_outline),
                         label: AppStrings.usernameString,
                         onChanged: getUser,
                       ),
@@ -58,6 +60,9 @@ class LoginWidget extends StatelessWidget {
                         height: AppDimens.defaultMarginDimension,
                       ),
                       RectangularTextFieldWidget(
+                        obscureText: true,
+                        prefixIcon: const Icon(Icons.lock_outline),
+                        suffixIcon: const Icon(Icons.visibility_outlined),
                         label: AppStrings.passwordString,
                         onChanged: getPassword,
                       ),
@@ -83,9 +88,11 @@ class LoginWidget extends StatelessWidget {
                     height: AppDimens.smallMarginDimension,
                   ),
                   RoundedButtonWidget(
-                    text: const Text(
+                    text: Text(
                       AppStrings.registerString,
-                      style: TextStyle(color: Colors.black),
+                      style: AppTextStyles.interBlackFontStyle(
+                          fontSize: AppDimens.fontSizeSmallDimension,
+                          fontWeight: FontWeight.w500),
                     ),
                     textColor: AppColors.oceanBlueColor,
                     onPressed: register,
@@ -93,7 +100,7 @@ class LoginWidget extends StatelessWidget {
                     border: false,
                   ),
                   const SizedBox(
-                    height: 75,
+                    height: AppDimens.ampleMarginDimension,
                   ),
                 ],
               ),
