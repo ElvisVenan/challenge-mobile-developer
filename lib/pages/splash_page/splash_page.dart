@@ -1,29 +1,18 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../controller/splash_controller.dart';
 import '../../const/app_colors.dart';
 import '../../const/app_dimens.dart';
 import '../../const/app_drawables.dart';
 
-import '../login_page/login_page.dart';
-
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  @override
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 3), () => LoginPage.navigate());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final splashController = Modular.get<SplashController>();
+    splashController.checkLoggedInUser();
     return Scaffold(
       backgroundColor: AppColors.pureWhiteColor,
       body: Column(
