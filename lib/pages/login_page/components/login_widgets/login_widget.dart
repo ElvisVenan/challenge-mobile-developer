@@ -15,6 +15,7 @@ class LoginWidget extends StatelessWidget {
   final Function()? forgotPassword;
   final Function() login;
   final Function() register;
+  final Widget loading;
 
   const LoginWidget({
     super.key,
@@ -24,6 +25,7 @@ class LoginWidget extends StatelessWidget {
     this.forgotPassword,
     required this.login,
     required this.register,
+    required this.loading,
   });
 
   @override
@@ -46,16 +48,18 @@ class LoginWidget extends StatelessWidget {
                   const SizedBox(
                     height: 52,
                   ),
-                  const Column(
+                  Column(
                     children: [
-                      RectangularTextFieldWidget(
+                       RectangularTextFieldWidget(
                         label: AppStrings.usernameString,
+                        onChanged: getUser,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppDimens.defaultMarginDimension,
                       ),
                       RectangularTextFieldWidget(
                         label: AppStrings.passwordString,
+                        onChanged: getPassword,
                       ),
                     ],
                   ),
@@ -70,7 +74,7 @@ class LoginWidget extends StatelessWidget {
                     height: AppDimens.largeMarginDimension,
                   ),
                   RoundedButtonWidget(
-                    text: AppStrings.loginString,
+                    text: loading,
                     textColor: AppColors.pureWhiteColor,
                     onPressed: login,
                     buttonColor: AppColors.oceanBlueColor,
@@ -79,14 +83,17 @@ class LoginWidget extends StatelessWidget {
                     height: AppDimens.smallMarginDimension,
                   ),
                   RoundedButtonWidget(
-                    text: AppStrings.registerString,
+                    text: const Text(
+                      AppStrings.registerString,
+                      style: TextStyle(color: Colors.black),
+                    ),
                     textColor: AppColors.oceanBlueColor,
                     onPressed: register,
                     buttonColor: AppColors.pureWhiteColor,
                     border: false,
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 75,
                   ),
                 ],
               ),
