@@ -11,6 +11,7 @@ import '../services/authentication_service/authentication_service.dart';
 import '../services/authentication_service/authentication_service_Implementation.dart';
 import '../services/local_service/local_service_impl.dart';
 import '../pages/splash_page/splash_page.dart';
+import 'controller/home_controller.dart';
 import 'controller/splash_controller.dart';
 
 class AppModule extends Module {
@@ -34,6 +35,7 @@ class AppModule extends Module {
   List<Bind> get controllersBinds => [
         Bind.factory((i) => AuthenticationController()),
         Bind.factory((i) => SplashController()),
+        Bind.factory((i) => HomeController()),
       ];
 
   @override
