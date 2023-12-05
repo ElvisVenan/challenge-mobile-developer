@@ -29,4 +29,17 @@ class AppTextStyles {
     );
   }
 
+  static TextStyle interWhiteFontStyle({
+    required double fontSize,
+    required FontWeight fontWeight,
+    TextDecoration? textDecoration,
+  }) {
+    return GoogleFonts.inter(
+      color: AppColors.pureWhiteColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      decoration: textDecoration,
+    );
+  }
+
 }
