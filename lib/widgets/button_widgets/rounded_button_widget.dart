@@ -4,7 +4,7 @@ import '../../const/app_colors.dart';
 import '../../const/app_dimens.dart';
 
 class RoundedButtonWidget extends StatelessWidget {
-  final String text;
+  final Widget text;
   final VoidCallback onPressed;
   final Color buttonColor;
   final Color? textColor;
@@ -31,10 +31,7 @@ class RoundedButtonWidget extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(color: textColor ?? Colors.black),
-        ),
+        child: text
       ),
     );
   }
