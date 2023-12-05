@@ -38,7 +38,7 @@ void main() {
       successMock();
 
       // Act
-      await authenticationService.authentication(authParams);
+      await authenticationService.createUser(authParams);
 
       // Assert
       final capturedRequestBody = verify(() => mockHttpClient.post(
@@ -55,7 +55,7 @@ void main() {
       successMock();
 
       // Act
-      final result = await authenticationService.authentication(authParams);
+      final result = await authenticationService.createUser(authParams);
 
       // Assert
       expect(result, isA<Right<ApplicationError, AuthenticationModel>>());
@@ -77,7 +77,7 @@ void main() {
       errorMock(500);
 
       // Act
-      final result = await authenticationService.authentication(authParams);
+      final result = await authenticationService.createUser(authParams);
 
       // Assert
       expect(result, isA<Left>());
