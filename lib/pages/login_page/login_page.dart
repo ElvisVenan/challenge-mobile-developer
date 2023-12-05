@@ -5,9 +5,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../const/app_colors.dart';
 import '../../const/app_routes.dart';
 import '../../const/app_strings.dart';
-import '../../controller/authentication_controller.dart';
 import '../../utils/show_message.dart';
 
+import '../../controller/authentication_controller.dart';
 import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
 import 'components/login_widgets/login_widget.dart';
 
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
             context, AppStrings.forgotUsernameString),
         forgotPassword: () => ShowMessage.showSuccessMessage(
             context, AppStrings.forgotPasswordString),
-        login: () => controller.authenticate(context),
+        login: () => controller.createUser(context),
         register: () =>
             ShowMessage.showSuccessMessage(context, AppStrings.registerString),
         loading: Observer(builder: (context) {
