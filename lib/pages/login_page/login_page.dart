@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../const/app_colors.dart';
 import '../../const/app_routes.dart';
+import '../../const/app_strings.dart';
+import '../../controller/authentication_controller.dart';
+import '../../utils/show_message.dart';
+
+import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
 import 'components/login_widgets/login_widget.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,15 +23,27 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<AuthenticationController>();
     return Scaffold(
       backgroundColor: AppColors.pureWhiteColor,
       body: LoginWidget(
-        getUser: (String? text) {},
-        getPassword: (String? text) {},
-        forgotUsername: () {},
-        forgotPassword: () {},
-        login: () {},
-        register: () {},
+        getUser: (String? text) => controller.setUser(text!),
+        getPassword: (String? text) => controller.setPassword(text!),
+        forgotUsername: () => ShowMessage.showSuccessMessage(
+            context, AppStrings.forgotUsernameString),
+        forgotPassword: () => ShowMessage.showSuccessMessage(
+            context, AppStrings.forgotPasswordString),
+        login: () => controller.authenticate(context),
+        register: () =>
+            ShowMessage.showSuccessMessage(context, AppStrings.registerString),
+        loading: Observer(builder: (context) {
+          return controller.isLoading
+              ? const CircularProgressWhiteColorWidget()
+              : const Text(
+                  AppStrings.loginString,
+                  style: TextStyle(color: AppColors.pureWhiteColor),
+                );
+        }),
       ),
     );
   }
