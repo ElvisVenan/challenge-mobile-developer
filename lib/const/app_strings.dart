@@ -1,17 +1,15 @@
 class AppStrings {
 
-  // Erros genéricos
-  static const String genericErrorTitle = 'Algo deu errado';
+  // Erros
+  static const String authenticationFailureMessageString = 'Falha na autenticação';
+  static const String clientMessageString = 'Cliente';
+  static const String statusCodeMessageString = 'Código de status';
+  static const String serviceErrorMessageString = 'Erro no serviço';
+  static const String serviceMessageString = 'Servidor';
+  static const String unknownCauseMessageString = 'Causa desconhecida';
   static const String genericErrorMessage =
       'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde ou entre em contato conosco para relatar o problema.';
-  static const String serverErrorMessage =
-      'Ocorreu um erro no processamento da sua requisição. Por favor, tente novamente mais tarde ou entre em contato conosco para relatar o problema.';
-  static const String serverErrorCausedBy =
-      'Erro ao fazer a chamada de um serviço na API.';
-  static const String reautenticationNeededErrorMessage =
-      'Erro ao efetuar o Login.\nPor favor, verifique os dados digitados e repita a operação.';
-  static const String unauthenticatedUserErrorCausedBy =
-      'Usuário não autenticado.';
+
 
   static const String usernameString = 'Usuário';
   static const String passwordString = 'Senha';
@@ -20,5 +18,4 @@ class AppStrings {
   static const String registerString = 'Cadastrar';
   static const String loginString = 'Entrar';
   static const String orString = 'Ou';
-
 }
