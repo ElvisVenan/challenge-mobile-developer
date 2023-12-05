@@ -9,6 +9,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
+  final bool obscureText;
 
   const RectangularTextFieldWidget({
     super.key,
@@ -16,39 +17,47 @@ class RectangularTextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.onChanged,
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (prefixIcon != null) prefixIcon!,
         Expanded(
           child: TextFormField(
+            obscureText: obscureText,
             onChanged: onChanged,
             style: AppTextStyles.interBlackFontStyle(
-                fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
+                fontSize: AppDimens.fontSizeMiniDimension,
+                fontWeight: FontWeight.w400),
             decoration: InputDecoration(
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
               hintStyle: AppTextStyles.interBlackFontStyle(
-                  fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
+                  fontSize: AppDimens.fontSizeMiniDimension,
+                  fontWeight: FontWeight.w400),
               labelStyle: AppTextStyles.interBlackFontStyle(
-                  fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
+                  fontSize: AppDimens.fontSizeMiniDimension,
+                  fontWeight: FontWeight.w400),
               labelText: label,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
+                borderRadius:
+                    BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.oceanBlueColor),
-                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
+                borderRadius:
+                    BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.grayColor),
-                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
+                borderRadius:
+                    BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
             ),
           ),
         ),
-        if (suffixIcon != null) suffixIcon!,
       ],
     );
   }
