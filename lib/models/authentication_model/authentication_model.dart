@@ -19,6 +19,9 @@ class AuthenticationModel {
     return {
       "email": email,
       "password": password,
+      "token": token,
+      "id": id,
+      "createdAt": createdAt,
     };
   }
 
