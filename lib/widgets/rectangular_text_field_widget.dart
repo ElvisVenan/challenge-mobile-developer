@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'package:challenge_mobile_developer/const/app_text_styles.dart';
+import '../const/app_text_styles.dart';
 import '../const/app_colors.dart';
+import '../const/app_dimens.dart';
 
 class RectangularTextFieldWidget extends StatelessWidget {
   final String label;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Function(String)? onChanged;
 
   const RectangularTextFieldWidget({
     super.key,
     required this.label,
     this.prefixIcon,
     this.suffixIcon,
+    this.onChanged,
   });
 
   @override
@@ -22,25 +25,25 @@ class RectangularTextFieldWidget extends StatelessWidget {
         if (prefixIcon != null) prefixIcon!,
         Expanded(
           child: TextFormField(
-            onChanged: (String text) {},
+            onChanged: onChanged,
             style: AppTextStyles.interBlackFontStyle(
-                fontSize: 12, fontWeight: FontWeight.w400),
+                fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
             decoration: InputDecoration(
               hintStyle: AppTextStyles.interBlackFontStyle(
-                  fontSize: 12, fontWeight: FontWeight.w400),
+                  fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
               labelStyle: AppTextStyles.interBlackFontStyle(
-                  fontSize: 12, fontWeight: FontWeight.w400),
+                  fontSize: AppDimens.fontSizeMiniDimension, fontWeight: FontWeight.w400),
               labelText: label,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.oceanBlueColor),
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.grayColor),
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(AppDimens.smallMarginDimension),
               ),
             ),
           ),
