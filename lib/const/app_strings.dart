@@ -18,4 +18,10 @@ class AppStrings {
   static const String registerString = 'Cadastrar';
   static const String loginString = 'Entrar';
   static const String orString = 'Ou';
+  static const String studentString = 'Alunos';
+  static const String addStudentString = 'Adicionar estudante';
+  static const String helperString = 'Ajuda';
+  static const String menuString = 'Menu';
+  static const String notificationString = 'Notificação';
+  static const String profileString = 'Perfil';
 }
