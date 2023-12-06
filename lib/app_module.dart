@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 
 import 'const/app_routes.dart';
 
+import '../services/remote_database/academic_record_service/student_service.dart';
+import '../services/remote_database/academic_record_service/student_service_impl.dart';
 import '../pages/home_page/home_page.dart';
 import '../services/local_database/i_local_service.dart';
 import '../services/local_database/local_service_impl.dart';
@@ -26,6 +28,7 @@ class AppModule extends Module {
         Bind.lazySingleton((i) => http.Client()),
         Bind.lazySingleton<AuthenticationService>(
             (i) => AuthenticationServiceImpl(i())),
+        Bind.lazySingleton<StudentService>((i) => StudentServiceImpl(i())),
       ];
 
   List<Bind> get servicesLocalBinds => [
