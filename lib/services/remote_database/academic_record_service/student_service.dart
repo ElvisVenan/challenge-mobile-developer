@@ -15,6 +15,6 @@ abstract class StudentService {
 
   Future<Either<ApplicationError, StudentModel>> getStudentById(int id);
 
-  Future<Either<ApplicationError, StudentModel>> updateStudent(StudentParams academicRecord);
+  Future<Either<ApplicationError, StudentModel>> updateStudent(int id);
 
 }
