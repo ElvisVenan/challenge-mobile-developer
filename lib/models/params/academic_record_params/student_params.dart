@@ -1,5 +1,5 @@
 class StudentParams {
-  final String id;
+  final String? id;
   final String ra;
   final String name;
   final String email;
@@ -7,7 +7,7 @@ class StudentParams {
   final String cpf;
 
   StudentParams({
-    required this.id,
+    this.id,
     required this.ra,
     required this.name,
     required this.email,
