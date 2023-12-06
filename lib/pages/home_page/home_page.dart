@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Modular.get<HomeController>();
+    controller.getStudents(context);
     return Scaffold(
         appBar: const AppBarOceanBlueColorWidget(
           title: AppStrings.studentString,
@@ -37,11 +38,13 @@ class HomePage extends StatelessWidget {
           builder: (_) {
             return IndexedStack(
               index: controller.currentIndex,
-              children: const [
-                MenuPage(),
-                HelperPage(),
-                NotificationPage(),
-                ProfilePage(),
+              children: [
+                MenuPage(
+                  student: controller.studentModel,
+                ),
+                const HelperPage(),
+                const NotificationPage(),
+                const ProfilePage(),
               ],
             );
           },
