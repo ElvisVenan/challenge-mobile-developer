@@ -10,6 +10,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final Function(String)? onChanged;
   final bool obscureText;
+  final FormFieldValidator<String>? validator;
 
   const RectangularTextFieldWidget({
     super.key,
@@ -18,6 +19,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.onChanged,
     this.obscureText = false,
+    this.validator,
   });
 
   @override
@@ -28,6 +30,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
           child: TextFormField(
             obscureText: obscureText,
             onChanged: onChanged,
+            validator: validator,
             style: AppTextStyles.interBlackFontStyle(
                 fontSize: AppDimens.fontSizeMiniDimension,
                 fontWeight: FontWeight.w400),
