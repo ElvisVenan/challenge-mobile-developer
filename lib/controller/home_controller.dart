@@ -19,7 +19,10 @@ abstract class _HomeControllerBase with Store {
   int currentIndex = 0;
 
   @observable
-  List<StudentModel> studentModel = [];
+  List<StudentModel> studentModel = ObservableList<StudentModel>();
+
+  @observable
+  StudentModel? student;
 
   @action
   void changeTabIndex(int index) {
@@ -48,4 +51,45 @@ abstract class _HomeControllerBase with Store {
       isLoading = false;
     });
   }
+
+  @action
+  Future<void> deleteStudent(BuildContext context, int id) async {
+    isLoading = true;
+    final studentController = Modular.get<StudentService>();
+
+    final students = await studentController.deleteStudent(id);
+
+    students.fold((error) {
+      errorMessage = error.friendlyMessage;
+      isLoading = false;
+      if (errorMessage.isNotEmpty) {
+        ShowMessage.showErrorMessage(context, errorMessage);
+      }
+      isLoading = false;
+    }, (success) {
+      student = success;
+      isLoading = false;
+    });
+  }
+
+  @action
+  Future<void> updateStudent(BuildContext context) async {
+    isLoading = true;
+    final studentController = Modular.get<StudentService>();
+
+    final students = await studentController.updateStudent(1);
+
+    students.fold((error) {
+      errorMessage = error.friendlyMessage;
+      isLoading = false;
+      if (errorMessage.isNotEmpty) {
+        ShowMessage.showErrorMessage(context, errorMessage);
+      }
+      isLoading = false;
+    }, (success) {
+      student = success;
+      isLoading = false;
+    });
+  }
+
 }
