@@ -4,7 +4,8 @@ class AppEndpoints {
   static const String baseUrlProtocolWithSecurity = 'https';
   static const String baseUrlProtocol = 'http';
 
-  //Authentication
   static const String authenticateEndpoint = 'api/v1/login';
+
+  static const String studentEndpoint = '/api/v1/student';
 
 }
