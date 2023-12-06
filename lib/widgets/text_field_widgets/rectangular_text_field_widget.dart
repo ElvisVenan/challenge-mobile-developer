@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../const/app_text_styles.dart';
-import '../const/app_colors.dart';
-import '../const/app_dimens.dart';
+import '../../const/app_text_styles.dart';
+import '../../const/app_colors.dart';
+import '../../const/app_dimens.dart';
 
 class RectangularTextFieldWidget extends StatelessWidget {
   final String label;

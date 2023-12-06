@@ -7,7 +7,7 @@ import '../../../../const/app_drawables.dart';
 import '../../../../const/app_strings.dart';
 
 import '../../../../widgets/button_widgets/rounded_button_widget.dart';
-import '../../../../widgets/rectangular_text_field_widget.dart';
+import '../../../../widgets/text_field_widgets/rectangular_text_field_widget.dart';
 
 import 'button_with_colored_text_widget.dart';
 
