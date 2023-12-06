@@ -16,9 +16,7 @@ import '../../endpoints/app_endpoints.dart';
 
 import 'student_service.dart';
 
-class StudentServiceImpl
-    with UriBuilder
-    implements StudentService {
+class StudentServiceImpl with UriBuilder implements StudentService {
   StudentServiceImpl(this.httpClient);
 
   final http.Client httpClient;
@@ -36,10 +34,10 @@ class StudentServiceImpl
       final response = await httpClient.post(
         Uri.parse(url),
         body: {
-          "ra": academicRecord.ra,
+          "academic_record": academicRecord.ra,
           "name": academicRecord.name,
           "email": academicRecord.email,
-          "dateOfBirth": academicRecord.dateOfBirth,
+          "birthdate": academicRecord.dateOfBirth,
           "cpf": academicRecord.cpf,
         },
       );
@@ -64,9 +62,35 @@ class StudentServiceImpl
   }
 
   @override
-  Future<Either<ApplicationError, StudentModel>> deleteStudent(int id) {
-    // TODO: implement deleteAcademicRecord
-    throw UnimplementedError();
+  Future<Either<ApplicationError, StudentModel>> deleteStudent(int id) async {
+    final String url = mountUrl(
+      AppEndpoints.baseUrlProtocolWithSecurity,
+      AppEndpoints.mainBaseUrl,
+      AppEndpoints.studentEndpoint,
+    );
+
+    try {
+      final response = await httpClient.delete(
+        Uri.parse("$url/$id"),
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.body;
+        return Right(StudentModel.fromJson(data));
+      } else if (response.statusCode == 500) {
+        return Left(AuthenticationError(
+            friendlyMessage: AppStrings.serviceErrorMessageString,
+            causedBy: AppStrings.serviceMessageString,
+            additionalInfo:
+                '${AppStrings.statusCodeMessageString}: ${response.statusCode}'));
+      } else {
+        return Left(
+            GenericError(causedBy: AppStrings.unknownCauseMessageString));
+      }
+    } catch (e) {
+      return Left(AuthenticationError(
+          friendlyMessage: e.toString(), additionalInfo: e.toString()));
+    }
   }
 
   @override
@@ -109,9 +133,41 @@ class StudentServiceImpl
   }
 
   @override
-  Future<Either<ApplicationError, StudentModel>> updateStudent(
-      StudentParams academicRecord) {
-    // TODO: implement updateRecordAcademic
-    throw UnimplementedError();
+  Future<Either<ApplicationError, StudentModel>> updateStudent(int id) async {
+    final String url = mountUrl(
+      AppEndpoints.baseUrlProtocolWithSecurity,
+      AppEndpoints.mainBaseUrl,
+      AppEndpoints.studentEndpoint,
+    );
+
+    try {
+      final response = await httpClient.put(
+        Uri.parse("$url/$id"),
+        body: {
+          "academic_record": "1212121",
+          "name": "Half",
+          "email": "academic@email",
+          "birthdate": "30-30-30",
+          "cpf": "12121212121212",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.body;
+        return Right(StudentModel.fromJson(data));
+      } else if (response.statusCode == 500) {
+        return Left(AuthenticationError(
+            friendlyMessage: AppStrings.serviceErrorMessageString,
+            causedBy: AppStrings.serviceMessageString,
+            additionalInfo:
+                '${AppStrings.statusCodeMessageString}: ${response.statusCode}'));
+      } else {
+        return Left(
+            GenericError(causedBy: AppStrings.unknownCauseMessageString));
+      }
+    } catch (e) {
+      return Left(AuthenticationError(
+          friendlyMessage: e.toString(), additionalInfo: e.toString()));
+    }
   }
 }
