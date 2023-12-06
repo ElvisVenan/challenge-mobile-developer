@@ -6,8 +6,10 @@ import '../../const/app_colors.dart';
 import '../../const/app_strings.dart';
 import '../../const/app_routes.dart';
 
+import '../../utils/popup_message.dart';
 import '../../controller/home_controller.dart';
 import '../../widgets/floating_action_button_widgets/floating_button_with_icon_and_text_widget.dart';
+import '../../pages/student_registration_page/student_registration_page.dart';
 import '../../widgets/app_bar_widgets/app_bar_ocean_blue_color_widget.dart';
 import './../../pages/home_page/components/bottom_navigation_pages/helper_page.dart';
 import './../../pages/home_page/components/bottom_navigation_pages/menu_page.dart';
@@ -33,15 +35,31 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: const AppBarOceanBlueColorWidget(
           title: AppStrings.studentString,
+          showIconArrow: false,
         ),
         body: Observer(
           builder: (_) {
             return IndexedStack(
               index: controller.currentIndex,
               children: [
-                MenuPage(
-                  student: controller.studentModel,
-                ),
+                !controller.isLoading
+                    ? MenuPage(
+                        student: controller.studentModel,
+                        onEdit: () {},
+                        onDelete: (int studentId) {
+                          PopupMessage.showStudentDeletedPopup(
+                              context: context,
+                              onConfirm: () async {
+                                await controller.deleteStudent(
+                                    context, studentId);
+                                controller.getStudents(context);
+                                Navigator.of(context).pop();
+                              });
+                        },
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                 const HelperPage(),
                 const NotificationPage(),
                 const ProfilePage(),
@@ -51,7 +69,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingButtonWithIconAndTextWidget(
           icon: Icons.add,
-          onPressed: () => null,
+          onPressed: () => StudentRegistrationPage.push(),
           text: AppStrings.addStudentString,
         ),
         floatingActionButtonLocation:
