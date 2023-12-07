@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
             Navigator.pop(context);
           },
           studentOnTap: () {
-            Navigator.pop(context);
+            StudentRegistrationPage.navigate();
           },
         ));
   }
