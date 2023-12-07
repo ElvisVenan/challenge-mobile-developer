@@ -70,6 +70,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  keyboardType: TextInputType.name,
                   textController: controller.studentName,
                   label: "${AppStrings.studentNameString}*",
                   onChanged: (text) => controller.getStudentName(text),
@@ -78,20 +79,23 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  keyboardType: TextInputType.number,
                   textController: controller.dateOfBirth,
                   label: AppStrings.birthdateString,
                   onChanged: (text) => controller.getDateOfBirth(text),
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  keyboardType: TextInputType.number,
                   textController: controller.cpf,
                   label: "${AppStrings.cpfString}*",
                   onChanged: (text) => controller.getCpf(text),
                   validator: (value) =>
-                      TextFieldValidator.validateRequired(value),
+                      TextFieldValidator.validateCPF(value),
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  keyboardType: TextInputType.number,
                   textController: controller.ra,
                   onChanged: (text) => controller.getRA(text),
                   label: "${AppStrings.academicRecordString}*",
@@ -112,11 +116,12 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   height: textBoxSpacing,
                 ),
                 RectangularTextFieldWidget(
+                  keyboardType: TextInputType.emailAddress,
                   textController: controller.email,
                   label: "${AppStrings.emailString}*",
                   onChanged: (text) => controller.getEmail(text),
                   validator: (value) =>
-                      TextFieldValidator.validateRequired(value),
+                      TextFieldValidator.validateEmail(value),
                 ),
                 const SizedBox(height: textBoxSpacing),
                 Observer(builder: (context) {
@@ -132,19 +137,21 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         : const CircularProgressWhiteColorWidget(),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await controller.updateStudent(
-                            context,
-                            StudentModel(
-                              id: args!.id,
-                              name: controller.studentName,
-                              email: controller.email,
-                              birthdate: controller.dateOfBirth,
-                              cpf: controller.cpf,
-                              createdAt: "",
-                              academicRecord: controller.ra,
-                            ));
-                        // await controller.createStudent(context);
-                        if (controller.errorMessage.isEmpty) {}
+                        if (args?.id != null) {
+                          await controller.updateStudent(
+                              context,
+                              StudentModel(
+                                id: args!.id,
+                                name: controller.studentName,
+                                email: controller.email,
+                                birthdate: controller.dateOfBirth,
+                                cpf: controller.cpf,
+                                createdAt: "",
+                                academicRecord: controller.ra,
+                              ));
+                        } else {
+                          await controller.createStudent(context);
+                        }
                       }
                     },
                     buttonColor: AppColors.oceanBlueColor,
