@@ -147,7 +147,7 @@ class StudentServiceImpl with UriBuilder implements StudentService {
             friendlyMessage: AppStrings.serviceErrorMessageString,
             causedBy: AppStrings.serviceMessageString,
             additionalInfo:
-            '${AppStrings.statusCodeMessageString}: ${response.statusCode}'));
+                '${AppStrings.statusCodeMessageString}: ${response.statusCode}'));
       } else {
         return Left(
             GenericError(causedBy: AppStrings.unknownCauseMessageString));
@@ -159,7 +159,8 @@ class StudentServiceImpl with UriBuilder implements StudentService {
   }
 
   @override
-  Future<Either<ApplicationError, StudentModel>> updateStudent(int id) async {
+  Future<Either<ApplicationError, StudentModel>> updateStudent(
+      StudentModel studentModel) async {
     final String url = mountUrl(
       AppEndpoints.baseUrlProtocolWithSecurity,
       AppEndpoints.mainBaseUrl,
@@ -168,13 +169,13 @@ class StudentServiceImpl with UriBuilder implements StudentService {
 
     try {
       final response = await httpClient.put(
-        Uri.parse("$url/$id"),
+        Uri.parse("$url/${studentModel.id}"),
         body: {
-          "academic_record": "1212121",
-          "name": "Half",
-          "email": "academic@email",
-          "birthdate": "30-30-30",
-          "cpf": "12121212121212",
+          "academic_record": studentModel.academicRecord,
+          "name": studentModel.name,
+          "email": studentModel.email,
+          "birthdate": studentModel.birthdate,
+          "cpf": studentModel.cpf
         },
       );
 
