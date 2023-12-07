@@ -92,4 +92,23 @@ abstract class _HomeControllerBase with Store {
     });
   }
 
+  @action
+  Future<void> getStudentById(BuildContext context, int id) async {
+    isLoading = true;
+    final studentController = Modular.get<StudentService>();
+
+    final students = await studentController.getStudentById(id);
+
+    students.fold((error) {
+      errorMessage = error.friendlyMessage;
+      isLoading = false;
+      if (errorMessage.isNotEmpty) {
+        ShowMessage.showErrorMessage(context, errorMessage);
+      }
+    }, (success) {
+      student = success;
+      isLoading = false;
+    });
+  }
+
 }
