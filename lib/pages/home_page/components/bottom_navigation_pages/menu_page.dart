@@ -7,7 +7,7 @@ import '../../../../widgets/container_widgets/card_with_text_and_icon_widget.dar
 
 class MenuPage extends StatelessWidget {
   final List<StudentModel> student;
-  final Function() onEdit;
+  final Function(int studentId) onEdit;
   final Function(int studentId) onDelete;
 
   const MenuPage(
@@ -28,7 +28,7 @@ class MenuPage extends StatelessWidget {
                   title: student[i].name,
                   subtitle1: student[i].academicRecord,
                   subtitle2: "${AppStrings.cpfString}: ${student[i].cpf}",
-                  onEdit: onEdit,
+                  onEdit: () => onEdit(int.parse(student[i].id)),
                   onDelete: () => onDelete(int.parse(student[i].id)),
                 );
               }),
