@@ -25,8 +25,7 @@ class HomePage extends StatelessWidget {
 
   static void navigate() => Modular.to.navigate(routePath);
 
-  static void push(String args) =>
-      Modular.to.pushNamed(routePath, arguments: args);
+  static void push() => Modular.to.pushNamed(routePath);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,10 @@ class HomePage extends StatelessWidget {
                 !controller.isLoading
                     ? MenuPage(
                         student: controller.studentModel,
-                        onEdit: () {},
+                        onEdit: (int studentId) async {
+                          await controller.getStudentById(context, studentId);
+                          StudentRegistrationPage.push(controller.student);
+                        },
                         onDelete: (int studentId) {
                           PopupMessage.showStudentDeletedPopup(
                               context: context,
@@ -69,7 +71,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingButtonWithIconAndTextWidget(
           icon: Icons.add,
-          onPressed: () => StudentRegistrationPage.push(),
+          onPressed: () => StudentRegistrationPage.push(null),
           text: AppStrings.addStudentString,
         ),
         floatingActionButtonLocation:
