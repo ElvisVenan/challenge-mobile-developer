@@ -31,4 +31,18 @@ class TextFieldValidator {
 
     return null;
   }
+
+  static String? validateCPF(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, preencha o campo de CPF.';
+    }
+
+    final cleanCPF = value.replaceAll(RegExp(r'\D'), '');
+
+    if (cleanCPF.length != 11) {
+      return 'Por favor, insira um CPF válido com exatamente 11 dígitos.';
+    }
+
+    return null;
+  }
 }
