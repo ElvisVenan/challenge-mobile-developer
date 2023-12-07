@@ -127,9 +127,35 @@ class StudentServiceImpl with UriBuilder implements StudentService {
   }
 
   @override
-  Future<Either<ApplicationError, StudentModel>> getStudentById(int id) {
-    // TODO: implement getRecordAcademicById
-    throw UnimplementedError();
+  Future<Either<ApplicationError, StudentModel>> getStudentById(int id) async {
+    final String url = mountUrl(
+      AppEndpoints.baseUrlProtocolWithSecurity,
+      AppEndpoints.mainBaseUrl,
+      AppEndpoints.studentEndpoint,
+    );
+
+    try {
+      final response = await httpClient.get(
+        Uri.parse("$url/$id"),
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.body;
+        return Right(StudentModel.fromJson(data));
+      } else if (response.statusCode == 500) {
+        return Left(AuthenticationError(
+            friendlyMessage: AppStrings.serviceErrorMessageString,
+            causedBy: AppStrings.serviceMessageString,
+            additionalInfo:
+            '${AppStrings.statusCodeMessageString}: ${response.statusCode}'));
+      } else {
+        return Left(
+            GenericError(causedBy: AppStrings.unknownCauseMessageString));
+      }
+    } catch (e) {
+      return Left(AuthenticationError(
+          friendlyMessage: e.toString(), additionalInfo: e.toString()));
+    }
   }
 
   @override
