@@ -12,6 +12,7 @@ import '../../utils/text_field_validator.dart';
 
 import '../../pages/home_page/home_page.dart';
 import '../../models/student_models/student_model.dart';
+import '../../utils/text_input_formatter_mask.dart';
 import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
 import '../../widgets/app_bar_widgets/app_bar_ocean_blue_color_widget.dart';
 import '../../widgets/button_widgets/rounded_button_widget.dart';
@@ -86,10 +87,17 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  inputFormatters: [
+                    TextInputFormatterMask(
+                      numberOfCharactersDefinedForInputText: '###.###.###-##',
+                      firstNumberSeparatorDefined: '.',
+                      secondNumberSeparatorDefined: '-',
+                    )
+                  ],
                   keyboardType: TextInputType.number,
                   textController: controller.cpf,
                   label: "${AppStrings.cpfString}*",
-                  onChanged: (text) => controller.getCpf(text),
+                  onChanged: (text) => controller.getCpf(TextInputFormatterMask.unmaskText(text)),
                   validator: (value) =>
                       TextFieldValidator.validateCPF(value),
                 ),
