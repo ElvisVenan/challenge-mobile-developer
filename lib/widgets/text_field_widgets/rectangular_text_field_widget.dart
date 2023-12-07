@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../const/app_text_styles.dart';
 import '../../const/app_colors.dart';
@@ -13,6 +14,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final String? textController;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   const RectangularTextFieldWidget({
     super.key,
@@ -24,6 +26,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
     this.validator,
     this.textController,
     this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
@@ -32,6 +35,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
       children: [
         Expanded(
           child: TextFormField(
+            inputFormatters: inputFormatters,
             keyboardType: keyboardType,
             controller: TextEditingController(text: textController),
             obscureText: obscureText,
