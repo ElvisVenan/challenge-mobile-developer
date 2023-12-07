@@ -19,7 +19,6 @@ import '../../widgets/text_field_widgets/rectangular_text_field_widget.dart';
 import '../../../controller/student_registration_controller.dart';
 
 class StudentRegistrationPage extends StatefulWidget {
-
   const StudentRegistrationPage({super.key});
 
   static const String routePath = AppRoutes.appStudentRegistrationPage;
@@ -133,7 +132,18 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         : const CircularProgressWhiteColorWidget(),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await controller.createStudent(context);
+                        await controller.updateStudent(
+                            context,
+                            StudentModel(
+                              id: args!.id,
+                              name: controller.studentName,
+                              email: controller.email,
+                              birthdate: controller.dateOfBirth,
+                              cpf: controller.cpf,
+                              createdAt: "",
+                              academicRecord: controller.ra,
+                            ));
+                        // await controller.createStudent(context);
                         if (controller.errorMessage.isEmpty) {}
                       }
                     },
