@@ -24,7 +24,7 @@ class DrawerHome extends StatelessWidget {
               color: AppColors.oceanBlueColor,
             ),
             child: Text(
-              'Menu Lateral',
+              'Menu',
               style: AppTextStyles.interWhiteFontStyle(
                   fontSize: 30, fontWeight: FontWeight.w500),
             ),
