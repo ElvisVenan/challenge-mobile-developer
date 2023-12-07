@@ -77,14 +77,10 @@ abstract class _StudentRegistrationController with Store {
       }
       isLoading = false;
     }, (success) {
-      PopupMessage.showStudentAddedPopup(context);
-      ra = "";
-      studentName = "";
-      email = "";
-      dateOfBirth = "";
-      cpf = "";
       student = success;
+      PopupMessage.showStudentAddedPopup(context);
       isLoading = false;
     });
   }
+
 }
