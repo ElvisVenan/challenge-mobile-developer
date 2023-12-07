@@ -11,6 +11,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
   final Function(String)? onChanged;
   final bool obscureText;
   final FormFieldValidator<String>? validator;
+  final String? textController;
 
   const RectangularTextFieldWidget({
     super.key,
@@ -20,6 +21,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
     this.onChanged,
     this.obscureText = false,
     this.validator,
+    this.textController,
   });
 
   @override
@@ -28,6 +30,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
       children: [
         Expanded(
           child: TextFormField(
+            controller: TextEditingController(text: textController),
             obscureText: obscureText,
             onChanged: onChanged,
             validator: validator,
