@@ -12,6 +12,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
   final bool obscureText;
   final FormFieldValidator<String>? validator;
   final String? textController;
+  final TextInputType? keyboardType;
 
   const RectangularTextFieldWidget({
     super.key,
@@ -22,6 +23,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.validator,
     this.textController,
+    this.keyboardType,
   });
 
   @override
@@ -30,6 +32,7 @@ class RectangularTextFieldWidget extends StatelessWidget {
       children: [
         Expanded(
           child: TextFormField(
+            keyboardType: keyboardType,
             controller: TextEditingController(text: textController),
             obscureText: obscureText,
             onChanged: onChanged,
