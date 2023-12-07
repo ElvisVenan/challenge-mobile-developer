@@ -83,4 +83,25 @@ abstract class _StudentRegistrationController with Store {
     });
   }
 
+  @action
+  Future<void> updateStudent(
+      BuildContext context, StudentModel studentModel) async {
+    isLoading = true;
+    final studentController = Modular.get<StudentService>();
+
+    final students = await studentController.updateStudent(studentModel);
+
+    students.fold((error) {
+      errorMessage = error.friendlyMessage;
+      isLoading = false;
+      if (errorMessage.isNotEmpty) {
+        ShowMessage.showErrorMessage(context, errorMessage);
+      }
+      isLoading = false;
+    }, (success) {
+      student = success;
+      PopupMessage.showStudentAddedPopup(context);
+      isLoading = false;
+    });
+  }
 }
