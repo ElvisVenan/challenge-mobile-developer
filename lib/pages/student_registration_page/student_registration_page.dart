@@ -97,7 +97,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   keyboardType: TextInputType.number,
                   textController: controller.cpf,
                   label: "${AppStrings.cpfString}*",
-                  onChanged: (text) => controller.getCpf(TextInputFormatterMask.unmaskText(text)),
+                  onChanged: (text) => controller.getCpf(text),
                   validator: (value) =>
                       TextFieldValidator.validateCPF(value),
                 ),
