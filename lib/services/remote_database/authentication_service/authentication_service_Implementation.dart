@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,7 +24,7 @@ class AuthenticationServiceImpl
   final http.Client httpClient;
 
   @override
-  Future<Either<ApplicationError, AuthenticationModel>> createUser(
+  Future<Either<ApplicationError, List<AuthenticationModel>>> getUser(
       AuthenticationParams? authentication) async {
     final String url = mountUrl(
       AppEndpoints.baseUrlProtocolWithSecurity,
@@ -31,17 +33,19 @@ class AuthenticationServiceImpl
     );
 
     try {
-      final response = await httpClient.post(
-        Uri.parse(url),
-        body: {
+      final uri = Uri.parse(url).replace(
+        queryParameters: {
           'email': authentication?.email,
           'password': authentication?.password,
         },
       );
 
-      if (response.statusCode == 201) {
-        final data = response.body;
-        return Right(AuthenticationModel.fromJson(data));
+      final response = await httpClient.get(uri);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        final List<AuthenticationModel> students = AuthenticationModel.fromListMap(data);
+        return Right(students);
       } else if (response.statusCode == 400) {
         return Left(AuthenticationError(
             friendlyMessage: AppStrings.authenticationFailureMessageString,
@@ -65,7 +69,8 @@ class AuthenticationServiceImpl
   }
 
   @override
-  Future<Either<ApplicationError, AuthenticationModel>> getUser(int id) async {
+  Future<Either<ApplicationError, AuthenticationModel>> getUserById(
+      int id) async {
     final String url = mountUrl(
       AppEndpoints.baseUrlProtocolWithSecurity,
       AppEndpoints.mainBaseUrl,
