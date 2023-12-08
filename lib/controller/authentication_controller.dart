@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
+import '../const/app_strings.dart';
 import '../utils/show_message.dart';
 
 import '../services/local_database/i_local_service.dart';
@@ -32,6 +33,9 @@ abstract class _AuthenticationController with Store {
   @observable
   AuthenticationModel? authenticationResponse;
 
+  @observable
+  List<AuthenticationModel> authenticationList = [];
+
   @action
   void setPassword(String getPassword) => password = getPassword;
 
@@ -44,7 +48,7 @@ abstract class _AuthenticationController with Store {
     final authController = Modular.get<AuthenticationService>();
 
     final authData = await authController
-        .createUser(AuthenticationParams(email: email, password: password));
+        .getUser(AuthenticationParams(email: email, password: password));
 
     authData.fold((error) {
       errorMessage = error.friendlyMessage;
@@ -53,9 +57,14 @@ abstract class _AuthenticationController with Store {
         ShowMessage.showErrorMessage(context, errorMessage);
       }
     }, (success) {
-      authenticationResponse = success;
-      saveInfoLogin();
-      HomePage.navigate();
+      authenticationList = success;
+      if(authenticationList.isNotEmpty){
+        saveInfoLogin();
+        HomePage.navigate();
+      } else{
+        ShowMessage.showErrorMessage(context, AppStrings.authenticationFailureMessageString);
+      }
+
       isLoading = false;
     });
   }
@@ -65,7 +74,7 @@ abstract class _AuthenticationController with Store {
     isLoading = true;
     final authController = Modular.get<AuthenticationService>();
 
-    final authData = await authController.getUser(id);
+    final authData = await authController.getUserById(id);
 
     authData.fold((error) {
       errorMessage = error.friendlyMessage;
@@ -81,10 +90,10 @@ abstract class _AuthenticationController with Store {
     final localServiceController = Modular.get<ILocalService>();
 
     await localServiceController.save(
-        LocalServiceImpl.ID_KEY, authenticationResponse!.id);
+        LocalServiceImpl.ID_KEY, authenticationList[0].id);
     await localServiceController.save(
-        LocalServiceImpl.EMAIL_KEY, authenticationResponse!.email);
+        LocalServiceImpl.EMAIL_KEY, authenticationList[0].email);
     await localServiceController.save(
-        LocalServiceImpl.TOKEN_KEY, authenticationResponse!.token);
+        LocalServiceImpl.TOKEN_KEY, authenticationList[0].token);
   }
 }
