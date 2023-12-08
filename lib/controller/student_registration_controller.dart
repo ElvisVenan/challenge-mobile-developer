@@ -100,7 +100,7 @@ abstract class _StudentRegistrationController with Store {
       isLoading = false;
     }, (success) {
       student = success;
-      PopupMessage.showStudentAddedPopup(context);
+      PopupMessage.showStudentUpdatePopup(context);
       isLoading = false;
     });
   }
