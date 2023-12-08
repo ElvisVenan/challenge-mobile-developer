@@ -19,7 +19,7 @@ abstract class _HomeControllerBase with Store {
   int currentIndex = 0;
 
   @observable
-  List<StudentModel> studentModel = ObservableList<StudentModel>();
+  List<StudentModel> studentModel = ObservableList();
 
   @observable
   StudentModel? student;
@@ -89,6 +89,19 @@ abstract class _HomeControllerBase with Store {
       student = success;
       isLoading = false;
     });
+  }
+
+  @action
+  void searchInfoByName(String searchText, BuildContext context) {
+    if (searchText.isEmpty) {
+      studentModel.clear();
+      getStudents(context);
+    }
+    studentModel = ObservableList.of(
+      studentModel.where(
+            (item) => item.name.toLowerCase().contains(searchText.toLowerCase()),
+      ),
+    );
   }
 
 }
