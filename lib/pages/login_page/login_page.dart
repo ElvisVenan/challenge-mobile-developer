@@ -1,4 +1,3 @@
-import 'package:challenge_mobile_developer/utils/text_field_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -6,7 +5,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../const/app_colors.dart';
 import '../../const/app_routes.dart';
 import '../../const/app_strings.dart';
+
 import '../../utils/show_message.dart';
+import '../../utils/text_field_validator.dart';
 
 import '../../controller/authentication_controller.dart';
 import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
           validatorPassword: (value) => TextFieldValidator.validatePassword(value),
           login: () {
             if (_formKey.currentState!.validate()) {
-              controller.createUser(context);
+              controller.authentication(context);
             }
           },
           register: () => ShowMessage.showSuccessMessage(
