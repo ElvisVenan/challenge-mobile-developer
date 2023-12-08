@@ -94,6 +94,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                       secondNumberSeparatorDefined: '-',
                     )
                   ],
+                  enabled: args?.id != null ? false : true,
                   keyboardType: TextInputType.number,
                   textController: controller.cpf,
                   label: "${AppStrings.cpfString}*",
@@ -103,6 +104,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  enabled: args?.id != null ? false : true,
                   keyboardType: TextInputType.number,
                   textController: controller.ra,
                   onChanged: (text) => controller.getRA(text),
