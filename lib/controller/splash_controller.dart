@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-import '../controller/authentication_controller.dart';
+import '../pages/home_page/authentication_controller/authentication_controller.dart';
 import '../pages/login_page/login_page.dart';
 import '../services/local_database/i_local_service.dart';
 import '../services/local_database/local_service_impl.dart';

@@ -12,7 +12,7 @@ import '../services/local_database/i_local_service.dart';
 import '../services/local_database/local_service_impl.dart';
 import '../services/remote_database/authentication_service/authentication_service.dart';
 import '../services/remote_database/authentication_service/authentication_service_Implementation.dart';
-import '../controller/authentication_controller.dart';
+import '../pages/home_page/authentication_controller/authentication_controller.dart';
 import '../pages/login_page/login_page.dart';
 import '../pages/splash_page/splash_page.dart';
 

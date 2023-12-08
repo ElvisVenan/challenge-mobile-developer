@@ -2,15 +2,15 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
-import '../const/app_strings.dart';
-import '../utils/show_message.dart';
+import '../../../const/app_strings.dart';
 
-import '../services/local_database/i_local_service.dart';
-import '../services/local_database/local_service_impl.dart';
-import '../services/remote_database/authentication_service/authentication_service.dart';
-import '../models/authentication_model/authentication_model.dart';
-import '../pages/home_page/home_page.dart';
-import '../models/params/authentication_params/authentication_params.dart';
+import '../../../models/authentication_model/authentication_model.dart';
+import '../../../models/params/authentication_params/authentication_params.dart';
+import '../../../services/local_database/i_local_service.dart';
+import '../../../services/local_database/local_service_impl.dart';
+import '../../../services/remote_database/authentication_service/authentication_service.dart';
+import '../../../utils/show_message.dart';
+import '../home_page.dart';
 
 part 'authentication_controller.g.dart';
 
