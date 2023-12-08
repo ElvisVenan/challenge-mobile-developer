@@ -9,7 +9,6 @@ import '../../const/app_routes.dart';
 
 import '../../utils/popup_message.dart';
 
-import '../../controller/home_controller.dart';
 import '../../widgets/floating_action_button_widgets/floating_button_with_icon_and_text_widget.dart';
 import '../../pages/student_registration_page/student_registration_page.dart';
 import '../../widgets/app_bar_widgets/app_bar_ocean_blue_color_widget.dart';
@@ -20,6 +19,7 @@ import './../../pages/home_page/components/bottom_navigation_pages/notification_
 import './../../pages/home_page/components/bottom_navigation_pages/profile_page.dart';
 
 import 'components/drawer/drawer_home.dart';
+import 'home_controller/home_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

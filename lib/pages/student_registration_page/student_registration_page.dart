@@ -9,15 +9,15 @@ import '../../const/app_routes.dart';
 import '../../const/app_text_styles.dart';
 
 import '../../utils/text_field_validator.dart';
+import '../../utils/text_input_formatter_mask.dart';
 
+import '../../pages/student_registration_page/student_registration_controller/student_registration_controller.dart';
 import '../../pages/home_page/home_page.dart';
 import '../../models/student_models/student_model.dart';
-import '../../utils/text_input_formatter_mask.dart';
 import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
 import '../../widgets/app_bar_widgets/app_bar_ocean_blue_color_widget.dart';
 import '../../widgets/button_widgets/rounded_button_widget.dart';
 import '../../widgets/text_field_widgets/rectangular_text_field_widget.dart';
-import '../../../controller/student_registration_controller.dart';
 
 class StudentRegistrationPage extends StatefulWidget {
   const StudentRegistrationPage({super.key});
@@ -99,8 +99,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   textController: controller.cpf,
                   label: "${AppStrings.cpfString}*",
                   onChanged: (text) => controller.getCpf(text),
-                  validator: (value) =>
-                      TextFieldValidator.validateCPF(value),
+                  validator: (value) => TextFieldValidator.validateCPF(value),
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
@@ -130,8 +129,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   textController: controller.email,
                   label: "${AppStrings.emailString}*",
                   onChanged: (text) => controller.getEmail(text),
-                  validator: (value) =>
-                      TextFieldValidator.validateEmail(value),
+                  validator: (value) => TextFieldValidator.validateEmail(value),
                 ),
                 const SizedBox(height: textBoxSpacing),
                 Observer(builder: (context) {

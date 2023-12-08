@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-import '../utils/popup_message.dart';
-import '../utils/show_message.dart';
+import '../../../utils/popup_message.dart';
+import '../../../utils/show_message.dart';
 
-import '../services/remote/student_service/abstract_student_service.dart';
-import '../models/params/academic_record_params/student_params.dart';
-import '../models/student_models/student_model.dart';
+import '../../../models/params/academic_record_params/student_params.dart';
+import '../../../models/student_models/student_model.dart';
+import '../../../services/remote/student_service/abstract_student_service.dart';
 
 part 'student_registration_controller.g.dart';
 

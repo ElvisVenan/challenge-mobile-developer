@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../controller/splash_controller.dart';
 import '../../const/app_colors.dart';
 import '../../const/app_dimens.dart';
 import '../../const/app_drawables.dart';
+
+import '../../pages/splash_page/splash_controller/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
