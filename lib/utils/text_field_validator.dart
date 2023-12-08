@@ -24,9 +24,9 @@ class TextFieldValidator {
       return 'Por favor, preencha o campo de senha.';
     }
 
-    final passwordRegex = RegExp(r'^.{8,}$');
+    final passwordRegex = RegExp(r'^.{6,}$');
     if (!passwordRegex.hasMatch(value)) {
-      return 'A senha deve ter pelo menos 8 caracteres.';
+      return 'A senha deve ter pelo menos 6 caracteres.';
     }
 
     return null;
