@@ -21,6 +21,26 @@ class PopupMessage {
     );
   }
 
+  static void showStudentUpdatePopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Usuário Atualizado'),
+          content: const Text('O usuário foi atualizado com sucesso.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static void showStudentDeletedPopup({
     required BuildContext context,
     required Function()? onConfirm,
