@@ -3,14 +3,17 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../const/app_colors.dart';
+import '../../const/app_dimens.dart';
 import '../../const/app_strings.dart';
 import '../../const/app_routes.dart';
 
 import '../../utils/popup_message.dart';
+
 import '../../controller/home_controller.dart';
 import '../../widgets/floating_action_button_widgets/floating_button_with_icon_and_text_widget.dart';
 import '../../pages/student_registration_page/student_registration_page.dart';
 import '../../widgets/app_bar_widgets/app_bar_ocean_blue_color_widget.dart';
+import '../../widgets/text_field_widgets/search_text_field_widget.dart';
 import './../../pages/home_page/components/bottom_navigation_pages/helper_page.dart';
 import './../../pages/home_page/components/bottom_navigation_pages/menu_page.dart';
 import './../../pages/home_page/components/bottom_navigation_pages/notification_page.dart';
@@ -42,22 +45,42 @@ class HomePage extends StatelessWidget {
               index: controller.currentIndex,
               children: [
                 !controller.isLoading
-                    ? MenuPage(
-                        student: controller.studentModel,
-                        onEdit: (int studentId) async {
-                          await controller.getStudentById(context, studentId);
-                          StudentRegistrationPage.push(controller.student);
-                        },
-                        onDelete: (int studentId) {
-                          PopupMessage.showStudentDeletedPopup(
-                              context: context,
-                              onConfirm: () async {
-                                await controller.deleteStudent(
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: AppDimens.compactMarginDimension,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: AppDimens.hugeMarginDimension),
+                            child: SearchTextField(
+                              onChanged: (value) => controller.searchInfoByName(value, context),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppDimens.compactMarginDimension,
+                          ),
+                          Expanded(
+                            child: MenuPage(
+                              student: controller.studentModel,
+                              onEdit: (int studentId) async {
+                                await controller.getStudentById(
                                     context, studentId);
-                                controller.getStudents(context);
-                                Navigator.of(context).pop();
-                              });
-                        },
+                                StudentRegistrationPage.push(
+                                    controller.student);
+                              },
+                              onDelete: (int studentId) {
+                                PopupMessage.showStudentDeletedPopup(
+                                    context: context,
+                                    onConfirm: () async {
+                                      await controller.deleteStudent(
+                                          context, studentId);
+                                      controller.getStudents(context);
+                                      Navigator.of(context).pop();
+                                    });
+                              },
+                            ),
+                          ),
+                        ],
                       )
                     : const Center(
                         child: CircularProgressIndicator(),
@@ -120,3 +143,5 @@ class HomePage extends StatelessWidget {
         ));
   }
 }
+
+
