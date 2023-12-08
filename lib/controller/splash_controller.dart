@@ -22,7 +22,7 @@ abstract class _SplashController with Store {
     var id = await localServiceController.get(LocalServiceImpl.ID_KEY);
 
     if (id != null) {
-      await authController.login(int.parse(id));
+      await authController.validateLoggedInUse(int.parse(id));
       if (id == (authController.authenticationResponse?.id ?? "")) {
         HomePage.navigate();
       } else {
