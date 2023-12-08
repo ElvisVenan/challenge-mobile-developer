@@ -1,7 +1,7 @@
 class AppStrings {
 
   // Erros API
-  static const String authenticationFailureMessageString = 'Falha na autenticação';
+  static const String authenticationFailureMessageString = 'Usuário ou senha incorretos. Tente novamente!';
   static const String clientMessageString = 'Cliente';
   static const String statusCodeMessageString = 'Código de status';
   static const String serviceErrorMessageString = 'Erro no serviço';
