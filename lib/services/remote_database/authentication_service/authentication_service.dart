@@ -7,10 +7,8 @@ import '../../../models/params/authentication_params/authentication_params.dart'
 
 abstract class AuthenticationService {
 
-  @override
-  Future<Either<ApplicationError, AuthenticationModel>> createUser(AuthenticationParams? authentication);
+  Future<Either<ApplicationError, List<AuthenticationModel>>> getUser(AuthenticationParams? authentication);
 
-  @override
-  Future<Either<ApplicationError, AuthenticationModel>> getUser(int id);
+  Future<Either<ApplicationError, AuthenticationModel>> getUserById(int id);
 
 }
