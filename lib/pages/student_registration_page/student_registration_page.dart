@@ -80,6 +80,13 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 ),
                 const SizedBox(height: textBoxSpacing),
                 RectangularTextFieldWidget(
+                  inputFormatters: [
+                    TextInputFormatterMask(
+                      numberOfCharactersDefinedForInputText: '##/##/####',
+                      firstNumberSeparatorDefined: '/',
+                    )
+                  ],
+                  validator: (value)=>TextFieldValidator.validateDate(value),
                   keyboardType: TextInputType.number,
                   textController: controller.dateOfBirth,
                   label: AppStrings.birthdateString,
@@ -131,7 +138,7 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   onChanged: (text) => controller.getEmail(text),
                   validator: (value) => TextFieldValidator.validateEmail(value),
                 ),
-                const SizedBox(height: textBoxSpacing),
+                const SizedBox(height: AppDimens.largeMarginDimension),
                 Observer(builder: (context) {
                   return RoundedButtonWidget(
                     text: !controller.isLoading
