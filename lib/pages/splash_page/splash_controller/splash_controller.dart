@@ -5,8 +5,8 @@ import 'package:mobx/mobx.dart';
 
 import '../../../services/local/abstract_local_service.dart';
 import '../../../services/local/local_service_impl.dart';
-import '../../home_page/authentication_controller/authentication_controller.dart';
 import '../../home_page/home_page.dart';
+import '../../login_page/authentication_controller/authentication_controller.dart';
 import '../../login_page/login_page.dart';
 
 part 'splash_controller.g.dart';

@@ -10,7 +10,7 @@ import '../../../models/authentication_model/authentication_model.dart';
 import '../../../models/params/authentication_params/authentication_params.dart';
 import '../../../services/local/local_service_impl.dart';
 import '../../../services/remote/authentication_service/abstract_authentication_service.dart';
-import '../home_page.dart';
+import '../../home_page/home_page.dart';
 
 part 'authentication_controller.g.dart';
 

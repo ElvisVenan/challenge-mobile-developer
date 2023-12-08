@@ -8,16 +8,15 @@ import '../pages/home_page/home_controller/home_controller.dart';
 import '../pages/splash_page/splash_controller/splash_controller.dart';
 import '../pages/student_registration_page/student_registration_controller/student_registration_controller.dart';
 import '../pages/home_page/home_page.dart';
+import '../pages/login_page/authentication_controller/authentication_controller.dart';
 import '../services/local/abstract_local_service.dart';
 import '../services/local/local_service_impl.dart';
 import '../services/remote/student_service/abstract_student_service.dart';
 import '../services/remote/student_service/student_service_impl.dart';
 import '../services/remote/authentication_service/abstract_authentication_service.dart';
 import '../services/remote/authentication_service/authentication_service_Impl.dart';
-import '../pages/home_page/authentication_controller/authentication_controller.dart';
 import '../pages/login_page/login_page.dart';
 import '../pages/splash_page/splash_page.dart';
-
 
 class AppModule extends Module {
   @override

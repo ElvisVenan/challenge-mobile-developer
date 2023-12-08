@@ -10,7 +10,7 @@ import '../../utils/show_message.dart';
 import '../../utils/text_field_validator.dart';
 
 import '../../widgets/circular_progress_widgets/circular_progress_white_color_widget.dart';
-import '../home_page/authentication_controller/authentication_controller.dart';
+import 'authentication_controller/authentication_controller.dart';
 import 'components/login_widgets/login_widget.dart';
 
 class LoginPage extends StatefulWidget {
