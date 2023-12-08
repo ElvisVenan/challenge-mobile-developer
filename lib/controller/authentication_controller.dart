@@ -43,7 +43,7 @@ abstract class _AuthenticationController with Store {
   String errorMessage = '';
 
   @action
-  Future<void> createUser(BuildContext context) async {
+  Future<void> authentication(BuildContext context) async {
     isLoading = true;
     final authController = Modular.get<AuthenticationService>();
 
@@ -70,7 +70,7 @@ abstract class _AuthenticationController with Store {
   }
 
   @action
-  Future<void> login(int id) async {
+  Future<void> validateLoggedInUse(int id) async {
     isLoading = true;
     final authController = Modular.get<AuthenticationService>();
 
