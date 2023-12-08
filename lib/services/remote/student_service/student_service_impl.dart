@@ -14,7 +14,7 @@ import '../../../models/student_models/student_model.dart';
 
 import '../../endpoints/app_endpoints.dart';
 
-import 'student_service.dart';
+import 'abstract_student_service.dart';
 
 class StudentServiceImpl with UriBuilder implements StudentService {
   StudentServiceImpl(this.httpClient);

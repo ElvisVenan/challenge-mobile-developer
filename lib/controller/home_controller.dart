@@ -4,8 +4,8 @@ import 'package:mobx/mobx.dart';
 
 import '../utils/show_message.dart';
 
+import '../services/remote/student_service/abstract_student_service.dart';
 import '../models/student_models/student_model.dart';
-import '../services/remote_database/academic_record_service/student_service.dart';
 
 part 'home_controller.g.dart';
 
@@ -99,9 +99,8 @@ abstract class _HomeControllerBase with Store {
     }
     studentModel = ObservableList.of(
       studentModel.where(
-            (item) => item.name.toLowerCase().contains(searchText.toLowerCase()),
+        (item) => item.name.toLowerCase().contains(searchText.toLowerCase()),
       ),
     );
   }
-
 }

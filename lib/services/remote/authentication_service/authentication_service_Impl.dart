@@ -14,7 +14,7 @@ import '../../../models/authentication_model/authentication_model.dart';
 import '../../../models/params/authentication_params/authentication_params.dart';
 import '../../endpoints/app_endpoints.dart';
 
-import 'authentication_service.dart';
+import 'abstract_authentication_service.dart';
 
 class AuthenticationServiceImpl
     with UriBuilder

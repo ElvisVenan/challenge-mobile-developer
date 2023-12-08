@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:challenge_mobile_developer/utils/http/errors/application_error.dart';
 import 'package:challenge_mobile_developer/models/authentication_model/authentication_model.dart';
-import 'package:challenge_mobile_developer/services/remote_database/authentication_service/authentication_service_Implementation.dart';
+import 'package:challenge_mobile_developer/services/remote/authentication_service/authentication_service_Impl.dart';
 
 import '../mocks/auth_mocks.dart';
 

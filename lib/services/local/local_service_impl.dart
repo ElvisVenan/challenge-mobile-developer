@@ -1,4 +1,4 @@
-import 'i_local_service.dart';
+import 'abstract_local_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalServiceImpl implements ILocalService {
