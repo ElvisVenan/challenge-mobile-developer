@@ -16,6 +16,8 @@ class LoginWidget extends StatelessWidget {
   final Function(String)? getPassword;
   final Function()? forgotUsername;
   final Function()? forgotPassword;
+  final FormFieldValidator<String>? validatorEmail;
+  final FormFieldValidator<String>? validatorPassword;
   final Function() login;
   final Function() register;
   final Widget loading;
@@ -29,6 +31,8 @@ class LoginWidget extends StatelessWidget {
     required this.login,
     required this.register,
     required this.loading,
+    this.validatorEmail,
+    this.validatorPassword,
   });
 
   @override
@@ -57,11 +61,13 @@ class LoginWidget extends StatelessWidget {
                         prefixIcon: const Icon(Icons.person_outline),
                         label: AppStrings.usernameString,
                         onChanged: getUser,
+                        validator: validatorEmail,
                       ),
                       const SizedBox(
                         height: AppDimens.defaultMarginDimension,
                       ),
                       RectangularTextFieldWidget(
+                        validator: validatorPassword,
                         obscureText: true,
                         prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: const Icon(Icons.visibility_outlined),
